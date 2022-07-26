@@ -14,7 +14,7 @@ const LOG_EVENT_GAME_OVER = "GAME_OVER";
 // const enteredValue = parseInt(prompt("Maximum life for you and the monster.", "100"));
 const enteredValue = prompt("Maximum life for you and the monster.", "100");
 //or use parseInt with variable
-let chosenMaxLife = parseInt(enteredValue); //later it will be user input
+let chosenMaxLife = parseInt(enteredValue); //later it will be user input  [can be written as: +enteredValue]
 
 let battleLog = [];
 
@@ -30,7 +30,7 @@ let hasBonusLife = true;
 adjustHealthBars(chosenMaxLife);
 
 function writeToLog(ev, val, monsterHealth, playerHealth) {
-  let logentry = {
+  let logentry = {   //object logentry
     //can be done in this way
     event: ev, //just change logentry.target in each block
     value: val, //leave in this view for readability
@@ -168,7 +168,7 @@ function strongAttackHandler() {
 function healPlayerHandler() {
   let healValue;
   if (currentPlayerHealth >= chosenMaxLife - HEAL_VALUE) {
-    alert("You can't hela to more then your max initial health.");
+    alert("You can't heal to more then your max initial health.");
     healValue = chosenMaxLife - currentPlayerHealth;
   } else {
     healValue = HEAL_VALUE;
