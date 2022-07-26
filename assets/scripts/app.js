@@ -30,47 +30,91 @@ let hasBonusLife = true;
 adjustHealthBars(chosenMaxLife);
 
 function writeToLog(ev, val, monsterHealth, playerHealth) {
-  let logentry = {   //object logentry
+  let logentry = {
+    //object logentry
     //can be done in this way
     event: ev, //just change logentry.target in each block
     value: val, //leave in this view for readability
     finalMonsterHEALTH: monsterHealth,
     finalPlayerHealth: playerHealth,
   };
-  if (ev === LOG_EVENT_PLAYER_ATTACK) {
-    logentry.target = "MONSTER";
-  } else if (ev === LOG_EVENT_PLAYER_STRONG_ATTACK) {
-    logentry = {
-      event: ev,
-      value: val,
-      target: "MONSTER",
-      finalMonsterHEALTH: monsterHealth,
-      finalPlayerHealth: playerHealth,
-    };
-  } else if (ev === LOG_EVENT_MONSTER_ATTACK) {
-    logentry = {
-      event: ev,
-      value: val,
-      target: "PLAYER",
-      finalMonsterHEALTH: monsterHealth,
-      finalPlayerHealth: playerHealth,
-    };
-  } else if (ev === LOG_EVENT_PLAYER_HEAL) {
-    logentry = {
-      event: ev,
-      value: val,
-      target: "PLAYER",
-      finalMonsterHEALTH: monsterHealth,
-      finalPlayerHealth: playerHealth,
-    };
-  } else if (ev === LOG_EVENT_GAME_OVER) {
-    logentry = {
-      event: ev,
-      value: val,
-      finalMonsterHEALTH: monsterHealth,
-      finalPlayerHealth: playerHealth,
-    };
+  switch (ev) {
+    case LOG_EVENT_PLAYER_ATTACK:
+      logentry.target = "MONSTER";
+      break; //if this case has been handled, no other shouldn't
+    //otherwise other case would be executed as well
+    case LOG_EVENT_PLAYER_STRONG_ATTACK:
+      logentry = {
+        event: ev,
+        value: val,
+        target: "MONSTER",
+        finalMonsterHEALTH: monsterHealth,
+        finalPlayerHealth: playerHealth,
+      };
+      break;
+    case LOG_EVENT_MONSTER_ATTACK:
+      logentry = {
+        event: ev,
+        value: val,
+        target: "PLAYER",
+        finalMonsterHEALTH: monsterHealth,
+        finalPlayerHealth: playerHealth,
+      };
+      break;
+    case LOG_EVENT_PLAYER_HEAL:
+      logentry = {
+        event: ev,
+        value: val,
+        target: "PLAYER",
+        finalMonsterHEALTH: monsterHealth,
+        finalPlayerHealth: playerHealth,
+      };
+      break;
+    case LOG_EVENT_GAME_OVER:
+      logentry = {
+        event: ev,
+        value: val,
+        finalMonsterHEALTH: monsterHealth,
+        finalPlayerHealth: playerHealth,
+      };
+      break;
+      default:
+      logentry = {};
   }
+  // if (ev === LOG_EVENT_PLAYER_ATTACK) {
+  //   logentry.target = "MONSTER";
+  // } else if (ev === LOG_EVENT_PLAYER_STRONG_ATTACK) {
+  //   logentry = {
+  //     event: ev,
+  //     value: val,
+  //     target: "MONSTER",
+  //     finalMonsterHEALTH: monsterHealth,
+  //     finalPlayerHealth: playerHealth,
+  //   };
+  // } else if (ev === LOG_EVENT_MONSTER_ATTACK) {
+  //   logentry = {
+  //     event: ev,
+  //     value: val,
+  //     target: "PLAYER",
+  //     finalMonsterHEALTH: monsterHealth,
+  //     finalPlayerHealth: playerHealth,
+  //   };
+  // } else if (ev === LOG_EVENT_PLAYER_HEAL) {
+  //   logentry = {
+  //     event: ev,
+  //     value: val,
+  //     target: "PLAYER",
+  //     finalMonsterHEALTH: monsterHealth,
+  //     finalPlayerHealth: playerHealth,
+  //   };
+  // } else if (ev === LOG_EVENT_GAME_OVER) {
+  //   logentry = {
+  //     event: ev,
+  //     value: val,
+  //     finalMonsterHEALTH: monsterHealth,
+  //     finalPlayerHealth: playerHealth,
+  //   };
+  // }
   battleLog.push(logentry); //instead of write it in each block
 }
 
