@@ -229,6 +229,13 @@ function healPlayerHandler() {
 }
 
 function printLogHandler() {
+  for (i = 0; i < 3; i++) {
+    console.log('-----------');
+  }
+  // for (i = 5; i > 0;) {
+  // i--;
+  // console.log(i);
+  // }
   console.log(battleLog);
 }
 
